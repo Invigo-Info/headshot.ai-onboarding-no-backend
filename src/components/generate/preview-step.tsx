@@ -46,6 +46,12 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
+// No-backend mode: the preview reveal is generated entirely client-side from the
+// uploaded photos (IndexedDB) and needs no auth. Keep this `false` so the flow
+// works without Supabase/Google sign-in (same as local dev). Flip to `true` to
+// re-enable the account gate before the reveal.
+const REQUIRE_AUTH = false;
+
 export function PreviewStep({ userId }: { userId: string }) {
   const { slug } = useFormStore();
   const [email, setEmail] = useState("");
@@ -53,9 +59,10 @@ export function PreviewStep({ userId }: { userId: string }) {
 
   const emailValid = isValidEmail(email);
 
-  // Once authenticated, reveal the (watermarked) generated headshots right here
-  // before sending the user on to choose a plan.
-  if (userId) {
+  // Reveal the (watermarked) generated headshots right here before sending the
+  // user on to choose a plan. When auth isn't required, show it to everyone;
+  // otherwise gate it behind a signed-in session.
+  if (!REQUIRE_AUTH || userId) {
     return <PreviewReveal />;
   }
 
