@@ -29,7 +29,7 @@ export async function AppSidebar({ ...props }: React.ComponentProps<typeof Sideb
     
     
   const user = {
-    name: userData.claims.user_metadata.full_name,
+    name: userData.claims.user_metadata?.full_name ?? "",
     email: userData.claims.email ?? "",
   }
 
