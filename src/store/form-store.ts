@@ -369,7 +369,7 @@ const validateStepAccess = (targetStep: string, formData: FormData, packData: Pa
 }
 
 // Helper function to check if a step is completed
-const isStepCompleted = (step: string, formData: FormData, packData: PackData | null): boolean => {
+const isStepCompleted = (step: string, formData: FormData, _packData: PackData | null): boolean => {
   switch (step) {
     case "gender": {
       // The redesigned gender step ("Tell us about yourself") collects name +
