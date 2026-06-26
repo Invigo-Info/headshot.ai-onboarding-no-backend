@@ -1,0 +1,28 @@
+﻿{
+    "subject":  "The person from the uploaded reference photograph. Match the reference exactly for face shape, skin tone, eye shape, eye color, nose structure, lip shape, jawline, ears, hair length, hair type, hair texture, and hair color. Match the reference's approximate age within two years. Preserve every visible freckle, mole, birthmark, scar, and distinguishing feature from the reference. Render real skin with visible pores, natural laugh lines, and authentic photographic character.",
+    "attire":  "dark grey fine-wool tailored suit over a crisp light blue formal dress shirt with a solid dark navy tie, refined fit and silhouette in a register suitable for professional profile editorial photography",
+    "grooming":  "polished professional editorial finish over the reference look — flyaways smoothed, natural hair definition retained, healthy real skin tone with subtle natural-glow recruiter-credible polish (clean shave or neatly trimmed beard preserved exactly as shown in the reference). All personal grooming and styling visible in the reference preserved exactly as shown.",
+    "pose":  "body angled 20 degrees camera-right with the front shoulder dropped lower than the back shoulder, chin pushed slightly forward and angled marginally down to extend the jawline (Hurley turtle technique), upper body leaning approximately one inch toward the lens for face-neck separation and active-listening read, weight shifted onto the back foot in a relaxed natural stance, refined warm closed-mouth slight smile carrying directory-credible approachability, alive direct eye contact through slightly narrowed lower eyelids (Hurley squinch) for confident no-tension read, slight 5 degree natural head tilt toward the brighter raised shoulder, framed half-body crop from the upper hip up, eye-level camera",
+    "expression":  "refined warm closed-mouth slight smile carrying directory-credible approachability in a recruiter-scan-credible register, eyes warmly engaged with refined sustained eye contact, the read of a credible professional — refined, considered, trustworthy",
+    "location":  "a softly blurred well-lit modern office corridor with floor-to-ceiling glass partitions, recessed ambient lighting, polished concrete floor, refined recruiter-credible practice tonal field",
+    "lighting":  "available natural daylight mixed with ambient ceiling light from the open office, soft and unforced with natural shadow falloff, natural catchlight in both eyes, true on-location available-light look with no studio fill",
+    "camera":  {
+                   "body":  "Canon EOS R5",
+                   "lens":  "35mm f/1.8",
+                   "aperture":  "f/2.8 — both eyes tack sharp with natural background falloff and true-to-life tonal rendering"
+               },
+    "style":  "candid on-location professional photograph taken in a real working office, true directory firm-bio register showing genuine practice context, suitable for professional profile photo and corporate directory, photorealistic available-light photography style with no studio set look",
+    "color_grade":  "neutral on-location professional palette with healthy true-to-life skin tones rendered universally across all ethnicities, balanced neutral white balance at 5500K, true-to-life accurate skin tones, natural highlight rolloff and natural texture preserved across glass and material surfaces",
+    "composition":  "professional half-body crop from the upper hip up showing the subject naturally in the office context, eyes placed on the upper-third gridline, level horizon, shallow depth of field at f/2.8 with soft natural office background blur, hand-held on-location framing",
+    "mood":  [
+                 "professional",
+                 "male",
+                 "office",
+                 "business-professional",
+                 "credible",
+                 "trustworthy",
+                 "authentic"
+             ],
+    "quality":  "ultra high resolution, professional editorial quality, tack-sharp focus on both eyes carrying refined recruiter-credible presence and authentic professional character, hyperrealistic clarity throughout, natural untouched skin with visible pores and authentic character preserved across all skin tones, photorealistic true-to-life recruiter-credible photography style, polished look",
+    "aspect_ratio":  "4:5"
+}

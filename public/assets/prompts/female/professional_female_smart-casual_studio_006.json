@@ -1,0 +1,28 @@
+{
+    "subject":  "The person from the uploaded reference photograph. Match the reference exactly for face shape, skin tone, eye shape, eye color, nose structure, lip shape, jawline, ears, hair length, hair type, hair texture, and hair color. Match the reference's approximate age within two years. Preserve every visible freckle, mole, birthmark, scar, and distinguishing feature from the reference. Render real skin with visible pores, natural laugh lines, and authentic photographic character.",
+    "attire":  "navy V-neck knit sweater layered over a crisp light blue silk blouse, refined fit and silhouette in a register suitable for professional profile editorial photography",
+    "grooming":  "polished professional editorial finish over the reference look — flyaways smoothed, natural hair definition retained, healthy real skin tone with subtle natural-glow recruiter-credible polish. All personal grooming and styling visible in the reference preserved exactly as shown.",
+    "pose":  "body angled 20 degrees camera-right with the front shoulder dropped lower than the back shoulder in a lengthened-neck graceful posture, chin pushed slightly forward and angled marginally down to extend the jawline (Hurley turtle technique), upper body leaning approximately one inch toward the lens for face-neck separation and active-listening read, weight shifted onto the back foot in a relaxed natural stance, composed-confident presence with no smile carrying executive register, alive direct eye contact through slightly narrowed lower eyelids (Hurley squinch) for confident no-tension read, a 7 degree natural head tilt toward the brighter raised shoulder, framed bust-crop from the upper chest up, eye-level camera",
+    "expression":  "composed-confident presence with no smile and strong sustained direct eye contact carrying executive register, eyes carrying refined corporate authority, the read of a senior professional whose presence commands respect",
+    "location":  "professional photography studio with a Medium Flat Grey seamless studio backdrop",
+    "lighting":  "soft directional natural light from camera-front-left at 45 degrees above eye level with refined directory-credible studio rendering, gentle ambient bounce fill at 2.5 to 1 ratio with the key, subtle separation rim defining the shoulder line, soft natural catchlight reflecting in both eyes, refined recruiter-credible studio exposure",
+    "camera":  {
+                   "body":  "Canon EOS R5",
+                   "lens":  "85mm f/1.4",
+                   "aperture":  "f/2.2 — both eyes tack sharp with natural background falloff and true-to-life tonal rendering"
+               },
+    "style":  "professional directory-credible studio editorial register, refined recruiter-scan-credible smart-casual presentation suitable for professional profile photo and corporate directory, photorealistic true-to-life modern-corporate photography style",
+    "color_grade":  "refined neutral directory-credible palette with healthy true-to-life skin tones rendered universally across all ethnicities, neutral white balance at 5500K, true-to-life accurate skin tones, controlled highlight rolloff, refined recruiter-credible color signature",
+    "composition":  "professional tight bust crop from the upper chest up balancing refined recruiter-credible silhouette with face presence, refined professional framing with eyes placed on the upper-third gridline, level horizon, shallow controlled depth of field at f/2.2, soft seamless backdrop separation, face fills 60 to 70 percent of frame for circle-crop preview",
+    "mood":  [
+                 "professional",
+                 "female",
+                 "studio",
+                 "smart-casual",
+                 "credible",
+                 "trustworthy",
+                 "authentic"
+             ],
+    "quality":  "ultra high resolution, professional editorial quality, tack-sharp focus on both eyes carrying refined recruiter-credible presence and authentic professional character, hyperrealistic clarity throughout, natural untouched skin with visible pores and authentic character preserved across all skin tones, photorealistic true-to-life recruiter-credible photography style, polished look",
+    "aspect_ratio":  "4:5"
+}

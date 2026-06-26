@@ -1,0 +1,28 @@
+{
+    "subject": "The person from the uploaded reference photograph. Match the reference exactly for face shape, skin tone, eye shape, eye color, nose structure, lip shape, jawline, ears, hair length, hair type, hair texture, and hair color. Match the reference's approximate age within two years. Preserve every visible freckle, mole, birthmark, scar, and distinguishing feature from the reference. Render real skin with visible pores, natural laugh lines, and authentic photographic character.",
+    "attire": "black bespoke wool tailored pantsuit over a crisp white silk blouse with a refined stand collar, refined fit and silhouette in a register suitable for professional profile editorial photography",
+    "grooming": "polished professional editorial finish over the reference look — flyaways smoothed, natural hair definition retained, healthy real skin tone with subtle natural-glow recruiter-credible polish. All personal grooming and styling visible in the reference preserved exactly as shown.",
+    "pose": "body angled 20 degrees camera-right with the front shoulder dropped lower than the back shoulder in a lengthened-neck graceful posture, chin pushed slightly forward and angled marginally down to extend the jawline (Hurley turtle technique), upper body leaning approximately one inch toward the lens for face-neck separation and active-listening read, weight shifted onto the back foot in a relaxed natural stance, open-mouth Duchenne smile reaching the eyes with natural eye-crinkle and authentic warmth, alive direct eye contact through slightly narrowed lower eyelids (Hurley squinch) for confident no-tension read, a 7 degree natural head tilt toward the brighter raised shoulder, framed mid-chest crop, eye-level camera",
+    "expression": "open-mouth Duchenne smile reaching the eyes with natural eye-crinkle and authentic warmth, eyes warmly engaged with alive direct eye contact, the read of a recruiter-magnet professional — confident, approachable, genuinely engaged",
+    "location": "a softly blurred eucalyptus grove with silvery-green leaves and tall pale trunks rendered as gentle natural bokeh, soft directional daylight, refined eucalyptus-grove tonal field",
+    "lighting": "natural daylight diffused through the tree canopy in soft open shade, gentle bounce from the surrounding foliage and ground filling the shadow side, natural catchlight in both eyes from the open sky, candid on-location available-light look with no studio fill",
+    "camera": {
+        "body": "Canon EOS R5",
+        "lens": "50mm f/1.4",
+        "aperture": "f/2.5 — both eyes tack sharp with natural background falloff and true-to-life tonal rendering"
+    },
+    "style": "candid on-location professional photograph taken in a real outdoor park or nature environment, true directory business-professional outdoor-portrait register, suitable for professional profile photo and corporate directory, photorealistic available-light photography style with no studio set look",
+    "color_grade": "neutral on-location professional palette with healthy true-to-life skin tones rendered universally across all ethnicities, balanced neutral white balance at 5500K, true-to-life accurate skin tones, natural highlight rolloff and natural foliage texture preserved",
+    "composition": "professional mid-chest crop showing the subject naturally in the outdoor park context, eyes placed on the upper-third gridline, level horizon, shallow depth of field at f/2.5 with soft natural foliage background blur, hand-held on-location framing",
+    "mood": [
+        "professional",
+        "female",
+        "nature",
+        "business-professional",
+        "credible",
+        "trustworthy",
+        "authentic"
+    ],
+    "quality": "ultra high resolution, professional editorial quality, tack-sharp focus on both eyes carrying refined recruiter-credible presence and authentic professional character, hyperrealistic clarity throughout, natural untouched skin with visible pores and authentic character preserved across all skin tones, photorealistic true-to-life recruiter-credible photography style, polished look",
+    "aspect_ratio": "4:5"
+}
