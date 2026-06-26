@@ -88,19 +88,29 @@ export async function updateSession(request: NextRequest) {
 
   // const startTime = Date.now()
 
-  const { data, error } = await supabase.auth.getClaims();
-  const user = data?.claims
+  let user
+  try {
+    const { data, error } = await supabase.auth.getClaims();
+    user = data?.claims
 
-  // If the session is expired/revoked, clear stale auth cookies so the error
-  // doesn't repeat on every subsequent request.
-  if (error?.code === 'session_expired') {
-    const allCookies = request.cookies.getAll()
-    const authCookies = allCookies.filter(c => c.name.startsWith('sb-'))
+    // If the session is expired/revoked, clear stale auth cookies so the error
+    // doesn't repeat on every subsequent request.
+    if (error?.code === 'session_expired') {
+      const allCookies = request.cookies.getAll()
+      const authCookies = allCookies.filter(c => c.name.startsWith('sb-'))
 
-    supabaseResponse = NextResponse.next({ request })
-    for (const cookie of authCookies) {
-      supabaseResponse.cookies.set(cookie.name, '', { maxAge: 0 })
+      supabaseResponse = NextResponse.next({ request })
+      for (const cookie of authCookies) {
+        supabaseResponse.cookies.set(cookie.name, '', { maxAge: 0 })
+      }
     }
+  } catch (e) {
+    // The auth backend can be unavailable (no-backend deploy / Supabase outage
+    // or rate-limit). Never let that 500 the entire site — treat the request as
+    // anonymous and continue. Public routes load; protected ones redirect to
+    // /login as usual.
+    console.error('updateSession: auth check failed; continuing anonymously', e)
+    user = undefined
   }
 
   // const endTime = Date.now()

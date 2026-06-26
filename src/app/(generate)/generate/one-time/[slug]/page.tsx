@@ -15,12 +15,20 @@ export interface GeneratePageProps {
 
 export default async function GeneratePage({ params }: GeneratePageProps) {
   const slug = (await params).slug;
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
-  const user = data?.claims;
 
   // Anonymous users are allowed to start the onboarding wizard. They'll be
-  // prompted to sign in at the preview step (the in-flow auth gate).
+  // prompted to sign in at the preview step (the in-flow auth gate). Resolve the
+  // (optional) signed-in user defensively — a Supabase outage must not 500 the
+  // whole wizard, so fall back to anonymous on any auth error.
+  let user: { sub?: string } | undefined;
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getClaims();
+    user = data?.claims;
+  } catch (err) {
+    console.error("generate page: auth check failed; continuing anonymously", err);
+    user = undefined;
+  }
 
   const packResult = await getPackBySlug(slug);
 
