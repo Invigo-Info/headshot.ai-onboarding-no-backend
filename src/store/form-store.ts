@@ -55,17 +55,38 @@ const STORE_NAME = 'images'
 
 class ImageStorage {
   private db: IDBDatabase | null = null
+  private opening: Promise<IDBDatabase> | null = null
 
-  async init(): Promise<void> {
-    return new Promise((resolve, reject) => {
+  // Open (or reuse) a live connection. If a previous connection was closed by
+  // the browser, Fast Refresh/HMR, a tab/version change, or eviction, the cached
+  // handle is dropped via onclose/onversionchange so this reopens a fresh one.
+  private openDb(): Promise<IDBDatabase> {
+    if (this.db) return Promise.resolve(this.db)
+    if (this.opening) return this.opening
+
+    this.opening = new Promise<IDBDatabase>((resolve, reject) => {
       const request = indexedDB.open(DB_NAME, DB_VERSION)
-      
-      request.onerror = () => reject(request.error)
-      request.onsuccess = () => {
-        this.db = request.result
-        resolve()
+
+      request.onerror = () => {
+        this.opening = null
+        reject(request.error)
       }
-      
+      request.onsuccess = () => {
+        const db = request.result
+        // Drop the cached handle when the connection goes away so the next
+        // operation transparently reopens instead of throwing "connection is
+        // closing".
+        db.onclose = () => {
+          if (this.db === db) this.db = null
+        }
+        db.onversionchange = () => {
+          try { db.close() } catch { /* ignore */ }
+          if (this.db === db) this.db = null
+        }
+        this.db = db
+        this.opening = null
+        resolve(db)
+      }
       request.onupgradeneeded = () => {
         const db = request.result
         if (!db.objectStoreNames.contains(STORE_NAME)) {
@@ -73,74 +94,68 @@ class ImageStorage {
         }
       }
     })
+
+    return this.opening
+  }
+
+  async init(): Promise<void> {
+    await this.openDb()
+  }
+
+  // Run a single IndexedDB request. Creating the transaction can throw
+  // synchronously ("InvalidStateError: The database connection is closing") if
+  // the cached connection has been closed — in that case we discard it and
+  // retry once with a freshly-opened connection.
+  private async run<T>(
+    mode: IDBTransactionMode,
+    op: (store: IDBObjectStore) => IDBRequest,
+  ): Promise<T> {
+    const attempt = async (): Promise<T> => {
+      const db = await this.openDb()
+      return new Promise<T>((resolve, reject) => {
+        const transaction = db.transaction([STORE_NAME], mode)
+        const store = transaction.objectStore(STORE_NAME)
+        const request = op(store)
+        request.onerror = () => reject(request.error)
+        request.onsuccess = () => resolve(request.result as T)
+      })
+    }
+
+    try {
+      return await attempt()
+    } catch {
+      // Stale/closing connection — drop it and retry once with a fresh one.
+      this.db = null
+      this.opening = null
+      return attempt()
+    }
   }
 
   async storeImage(id: string, file: File): Promise<void> {
-    if (!this.db) await this.init()
-    
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([STORE_NAME], 'readwrite')
-      const store = transaction.objectStore(STORE_NAME)
-      const request = store.put({ id, file })
-      
-      request.onerror = () => reject(request.error)
-      request.onsuccess = () => resolve()
-    })
+    await this.run<IDBValidKey>('readwrite', (store) => store.put({ id, file }))
   }
 
   async getImage(id: string): Promise<File | null> {
-    if (!this.db) await this.init()
-    
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([STORE_NAME], 'readonly')
-      const store = transaction.objectStore(STORE_NAME)
-      const request = store.get(id)
-      
-      request.onerror = () => reject(request.error)
-      request.onsuccess = () => {
-        const result = request.result
-        resolve(result ? result.file : null)
-      }
-    })
+    const result = await this.run<{ id: string; file: File } | undefined>(
+      'readonly',
+      (store) => store.get(id),
+    )
+    return result ? result.file : null
   }
 
   async deleteImage(id: string): Promise<void> {
-    if (!this.db) await this.init()
-    
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([STORE_NAME], 'readwrite')
-      const store = transaction.objectStore(STORE_NAME)
-      const request = store.delete(id)
-      
-      request.onerror = () => reject(request.error)
-      request.onsuccess = () => resolve()
-    })
+    await this.run<undefined>('readwrite', (store) => store.delete(id))
   }
 
   async getAllImages(): Promise<{ id: string; file: File }[]> {
-    if (!this.db) await this.init()
-    
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([STORE_NAME], 'readonly')
-      const store = transaction.objectStore(STORE_NAME)
-      const request = store.getAll()
-      
-      request.onerror = () => reject(request.error)
-      request.onsuccess = () => resolve(request.result)
-    })
+    return this.run<{ id: string; file: File }[]>(
+      'readonly',
+      (store) => store.getAll(),
+    )
   }
 
   async clearAll(): Promise<void> {
-    if (!this.db) await this.init()
-    
-    return new Promise((resolve, reject) => {
-      const transaction = this.db!.transaction([STORE_NAME], 'readwrite')
-      const store = transaction.objectStore(STORE_NAME)
-      const request = store.clear()
-      
-      request.onerror = () => reject(request.error)
-      request.onsuccess = () => resolve()
-    })
+    await this.run<undefined>('readwrite', (store) => store.clear())
   }
 }
 

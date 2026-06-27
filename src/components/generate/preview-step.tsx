@@ -46,11 +46,11 @@ function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
-// No-backend mode: the preview reveal is generated entirely client-side from the
-// uploaded photos (IndexedDB) and needs no auth. Keep this `false` so the flow
-// works without Supabase/Google sign-in (same as local dev). Flip to `true` to
-// re-enable the account gate before the reveal.
-const REQUIRE_AUTH = false;
+// When true, the upload step's "Create Your Headshots" CTA leads to the account
+// gate — the "Continue with Google" / magic-link page with the preparing timer —
+// before the headshots are revealed. Set to `false` for no-backend mode where
+// the reveal is shown directly without any sign-in.
+const REQUIRE_AUTH = true;
 
 export function PreviewStep({ userId }: { userId: string }) {
   const { slug } = useFormStore();
